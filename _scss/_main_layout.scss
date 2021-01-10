@@ -1,0 +1,69 @@
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $mainFont;
+    background: $mainBGColor;
+    color: $mainFGColor;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 14pt;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    font-family: $decorativeFont;
+    color: $accent1;
+}
+
+div.container {
+    padding: 0.5em 0;
+    flex: 1 1 auto;
+    
+    main article>* {
+        width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+        
+        &.image-gallery {
+            width: auto;
+        }
+    }
+
+    img
+    {
+        @include paper-img;
+    }
+}
+
+img.float-img-right {
+    float:right;
+    margin: 1ex;
+    max-width: 40%;
+}
+
+table {
+    margin: 0 auto;
+
+    th, td {
+        padding: 0 1ex;
+        text-align: center;
+    }
+}
+
+a, a:visited {
+    color: $accent2;
+    transition: color 0.1s ease-out;
+
+    &:hover {
+        color: lighten($accent2, 20%);
+    }
+}

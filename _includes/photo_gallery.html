@@ -1,0 +1,22 @@
+{% assign image_list = site.data.photos.images | where_exp: "image",
+    "image.tags contains include.image_tag" %}
+<script src="/assets/js/swiped-events.min.js"></script>
+    
+<div class="image-gallery {{include.className}}">
+    <div class="gallery-space">
+        
+        {% for photo in image_list %}
+        <div class="photo-container{% if forloop.index0 == 0 %} active{% endif %}"
+            data-index="{{forloop.index0}}"
+        >
+            
+            <img class="gallery-image" data-src="{{photo.url}}">
+            
+            <a class="lightbox_icon" data-lightbox="{{include.image_tag}}" href="{{photo.url}}">
+                <img src="/assets/img/fullscreen.png">
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>

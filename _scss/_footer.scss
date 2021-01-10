@@ -1,0 +1,79 @@
+div.call_to_action {
+    font-size: 1.3em;
+    background: #777;
+    color: white;
+    flex: 0 1 auto;
+    text-align: center;
+    padding: 1em 2ex;
+}
+
+div.call_to_action a {
+    color: white;
+    text-decoration: none;
+
+    &:not(.big_button) {
+        @include animated-hover-line(lighten($accent2, 33%), $medGray);
+    }
+}
+
+div.call_to_action a.big_button {
+    position: relative;
+    z-index: 1;
+
+    display: inline-block;
+    color: white;
+    background: $accent1;
+
+    $gradient-color-1: $accent1;
+    $gradient-color-2: darken($accent1, 15%);
+
+    background: -moz-linear-gradient(top, $gradient-color-1 0%, $gradient-color-2 100%);
+    background: -webkit-linear-gradient(top, $gradient-color-1 0%, $gradient-color-2 100%);
+    background: linear-gradient(to bottom, $gradient-color-1 0%, $gradient-color-2 100%);
+    color: white;
+    font-family: $decorativeFont;
+    font-size: 1.2em;
+    padding: 0.25em 1em;
+    margin: 0.25em;
+    text-decoration: none;
+    border-radius: 1em;
+
+    &::before {
+        content: "";
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0;
+
+        font-size: 1.2em;
+        border-radius: 1em;
+
+        transition: opacity 0.2s ease-out;
+
+        $hover-gradient-color-1: $accent2;
+        $hover-gradient-color-2: darken($accent2, 15%);
+
+        background: $hover-gradient-color-1;
+        background: -moz-linear-gradient(top, $hover-gradient-color-1 0%, $hover-gradient-color-2 100%);
+        background: -webkit-linear-gradient(top, $hover-gradient-color-1 0%, $hover-gradient-color-2 100%);
+        background: linear-gradient(to bottom, $hover-gradient-color-1 0%, $hover-gradient-color-2 100%);
+    }
+
+    &:hover {
+        color: white;
+
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+
+div.copyright {
+    font-style: italic;
+    font-size: 0.8rem;
+    flex: 0 1 auto;
+}

@@ -1,0 +1,98 @@
+@import '_variables';
+$gallery_height: 250px;
+$rotation_x: 45deg;
+
+div.image-gallery {
+    
+    position: relative;
+    width: 100vw;
+    height: $gallery_height;
+    margin: 3vw;
+    perspective: 1000px;
+    overflow: hidden;
+    background: no-repeat url('../img/grey_wood_bg.jpg');
+    background-size: cover;
+    
+    .invisible {
+        opacity: 0;
+    }
+    
+    &::before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        background: -webkit-radial-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+        background: -moz-radial-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+        background: radial-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    
+    div.gallery-space {
+        list-style: none;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: row;
+        transform-style: preserve-3d;
+        transform:  rotateX($rotation_x);
+        align-items: flex-start;
+        justify-content: space-around;
+        
+        div.photo-container {
+            position: relative;
+            z-index: 1;
+                
+            &>img {
+                margin: calc(#{$gallery_height} * 0.1);
+                height: calc(#{$gallery_height} * 0.8);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+                transition: 0.3s ease-out;
+                border-radius: 8px;
+            }
+            
+            a.lightbox_icon {
+                display: none;
+                background: rgba(0, 0, 0, 0.5);
+                position: absolute;
+                border-radius: 4px;
+                padding: 2px;
+                right: calc(#{$gallery_height} * 0.1);
+                bottom: calc(#{$gallery_height} * 0.1);
+                z-index: 3;
+                opacity: 0;
+                
+                transform: translateZ(8px);
+                transition: opacity 0.2s ease-out;
+            }
+            
+            &:hover, &.active {
+                &>img {
+                    transform: translateZ(6px);
+                    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.6);
+                }
+               
+                a.lightbox_icon {
+                    opacity: 1;
+                    display: block;
+                }
+            }
+            
+            &.active {
+                transform: rotateX(-$rotation_x);
+            }
+        }
+    }
+    
+    &.animated {
+        div.gallery-space {
+            transition: transform 0.75s cubic-bezier(.52, .92, .8, 1.08);
+            
+            div.photo-container {
+                transition: transform 0.25s cubic-bezier(.52, .92, .8, 1.08);
+            }
+        }
+    }
+}

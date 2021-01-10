@@ -1,0 +1,58 @@
+$accent1: #2e59ad;
+$accent2: #4a7ee0;
+$mainFGColor: #7B8D8E;
+$mainBGColor: white;
+$medGray: #777;
+$lightGray: #afafaf;
+$veryLightGray: #fafafa;
+$shadowColor: rgba(0, 0, 0, 10%);
+
+$decorativeFont: "Strait", sans-serif;
+$mainFont: "Open Sans", sans-serif;
+
+@mixin paper-img {
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px $shadowColor;
+}
+
+@mixin link-color-transition {
+    transition: color 0.3s ease-in;
+}
+
+@mixin animated-hover-line($animFGColor, $animBGColor, $hover-color: 1, $lineTopPosition: 100%) {
+    position: relative;
+
+    @if $hover-color == 1 {
+        @include link-color-transition;
+    }
+
+    &::after {
+        display: block;
+        position: absolute;
+        top: $lineTopPosition;
+        left: 50%;
+        margin-left: 0;
+        content: "";
+
+        transition: all 0.3s ease-in;
+        
+        padding: 1px;
+        height: 0px;
+        width: 0;
+        border-radius: 2px;
+
+        background: $animBGColor;
+    }
+
+    &:hover, &.current, &:focus, &:active {
+        @if $hover-color == 1 {
+            color: $animFGColor;
+        }
+
+        &::after {
+            margin-left: calc(-50% + 2.5ex);
+            width: calc(100% - 5ex);
+            background: $animFGColor;
+        }
+    }
+}

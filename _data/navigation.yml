@@ -1,0 +1,10 @@
+- name: Home
+  link: /
+- name: About Us
+  link: /about
+- name: Services
+  link: /services
+- name: Gallery & Case Studies
+  link: /gallery
+- name: Contact Us
+  link: /contact
