@@ -239,6 +239,8 @@ GEM
     nokogiri (1.18.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    nokogiri (1.18.2-x64-mingw-ucrt)
+      racc (~> 1.4)
     nokogiri (1.18.2-x86_64-linux-gnu)
       racc (~> 1.4)
     octokit (4.25.1)
@@ -275,15 +277,18 @@ GEM
       tzinfo (>= 1.0.0)
     unicode-display_width (1.8.0)
     uri (1.0.2)
+    wdm (0.2.0)
     webrick (1.9.1)
 
 PLATFORMS
+  x64-mingw-ucrt
   x64-mingw32
   x86_64-linux-gnu
 
 DEPENDENCIES
   github-pages
   tzinfo-data
+  wdm (~> 0.2.0)
 
 BUNDLED WITH
    2.4.20
